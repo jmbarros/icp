@@ -1,0 +1,13 @@
+---
+#
+  - name: Stop firewalld
+    service: name=firewalld state=stopped enabled=no
+    #tags: rhel7,sec
+    ignore_errors: True
+
+  - name: Stop iptables
+    service: name=iptables state=stopped enabled=no
+    #tags: rhel6,sec
+    ignore_errors: True
+
+  

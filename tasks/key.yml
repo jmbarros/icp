@@ -1,0 +1,32 @@
+---
+#  - stat: path="/root/.ssh/id_rsa_k8s"
+#    register: foo_var
+#  - command: "ssh-keygen -N '' -f /root/.ssh/id_rsa_k8s"
+#    when: not foo_var.stat.exists	
+#    delegate_to: localhost
+  - name: check if ssh key exists 
+    stat: 
+      path="/root/.ssh/id_rsa_k8s"
+    register: key
+    delegate_to: localhost
+
+  - name: creating local ssh key
+    command: "ssh-keygen -N '' -f /root/.ssh/id_rsa_k8s"
+    when: not key.stat.exists
+    delegate_to: localhost
+
+  - name: clone ssh key to servers
+    copy:
+      src: /root/.ssh/id_rsa_k8s
+      dest: /root/.ssh/id_rsa
+      owner: root
+      group: root
+      mode: 0600
+
+  - name: clone ssh key to servers
+    copy:
+      src: /root/.ssh/id_rsa_k8s.pub
+      dest: /root/.ssh/id_rsa.pub
+      owner: root
+      group: root
+      mode: 0600
