@@ -2,4 +2,4 @@
   - name: installing ssh key
     authorized_key:
       user: root
-      key: "{{ lookup('file', '/root/.ssh/id_rsa_k8s.pub') }}"
+      key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
