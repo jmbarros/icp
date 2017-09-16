@@ -1,4 +1,7 @@
 ---
+  - name: upgrade all packages
+    yum: name='*' state=latest
+
   - name: installing ansible application requiriments
     yum: name={{ item }} state=installed
     with_items:     
@@ -10,9 +13,11 @@
     - yum-utils 
     - device-mapper-persistent-data 
     - lvm2
+
   - name: Installing PIP
     command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
     ignore_errors: True
+
   - name: installing ansible application requiriments
     yum: name={{ item }} state=installed
     with_items:
@@ -22,7 +27,11 @@
     service: name={{ item }} state=restarted enabled=yes
     with_items:  
     - docker
-  
-
-
-
+   
+  - name: update pip
+    command: pip install --upgrade pip
+    ignore_errors: True
+ 
+  - name: remove pip
+    command: pip uninstall docker-py
+    ignore_errors: True

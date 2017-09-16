@@ -1,0 +1,17 @@
+---
+#  - name: setting max map count
+#    command: sysctl -w vm.max_map_count=262144
+#    ignore_errors: True
+#
+#  - name: Build hosts file
+#    lineinfile:
+#      dest: /etc/hosts
+#      regexp: '.*{{ item }}$'
+#      line: '{{ hostvars[item].ansible_default_ipv4.address }} {{item}}'
+#      state: present
+#    with_items: '{{ groups["icp"] }}'
+
+  - name: install container locally 
+    docker_image:
+      name: ibmcom/cfc-installer:2.1.0-beta-1
+    delegate_to: localhost
