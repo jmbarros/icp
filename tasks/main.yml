@@ -1,8 +1,8 @@
 ---
-#  - include: key.yml
-#  - include: admin_key.yml
-#  - include: repo.yml
-#  - include: net.yml
-#  - include: sec.yml
-#  - include: sshd.yml
+  - include: key.yml
+  - include: admin_key.yml
+  - include: repo.yml
+  - include: net.yml
+  - include: sec.yml
+  - include: sshd.yml
   - include: icp.yml
