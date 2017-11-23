@@ -13,7 +13,7 @@
     - python-setuptools
 
   - name: installing pip requiriments
-    command: easy_install pip
+    command: /usr/bin/easy_install pip
     ignore_errors: True
 
   - name: installing ansible application requiriments
