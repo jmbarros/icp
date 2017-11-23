@@ -1,5 +1,5 @@
 ---
-  - name: installing ansible application requiriments
+  - name: installing epel-release
     yum: name={{ item }} state=installed
     with_items:
     - epel-release
@@ -7,19 +7,25 @@
   - name: upgrade all packages
     yum: name='*' state=latest
 
+  - name: installing python requiriments
+    yum: name={{ item }} state=installed
+    with_items:     
+    - python-setuptools
+
+  - name: installing pip requiriments
+    command: easy_install pip
+    ignore_errors: True
+
   - name: installing ansible application requiriments
     yum: name={{ item }} state=installed
     with_items:     
-    - libselinux-python
-    - python-pip
-    - python
     - python-devel
     - yum-utils 
     - device-mapper-persistent-data 
     - lvm2
     - nfs-utils
 
-  - name: Installing Docker Repo
+  - name: installing Docker Repo
     command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
     ignore_errors: True
 

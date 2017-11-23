@@ -1,6 +1,6 @@
 ---
   - name: setting max map count
-    command: sysctl -w vm.max_map_count=262144
+    command: echo "vm.max_map_count=262144" | tee -a /etc/sysctl.conf
     ignore_errors: True
 
   - name: Build hosts file
